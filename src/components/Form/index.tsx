@@ -1,3 +1,4 @@
+import { stringify } from "node:querystring";
 import React, { Fragment, useState } from "react";
 
 export interface FormProps {}
@@ -16,12 +17,40 @@ const Form: React.FC<FormProps> = () => {
     description: "",
   });
 
-  //Handle inputs changes
+  const [error, setError] = useState(false);
+
+  /**
+   * Handle inputs changes
+   * @param event
+   */
   const handleChange = (event: any) => {
     setAppointment({
       ...appointment,
       [event.target.name]: event.target.value,
     });
+  };
+
+  /**
+   * Form submit
+   * @param event
+   */
+  const submitAppointment = (event: any) => {
+    event.preventDefault();
+
+    // Validation
+    if (
+      title.trim() === "" ||
+      date.trim() === "" ||
+      time.trim() === "" ||
+      description.trim() === ""
+    ) {
+      setError(true);
+      return;
+    }
+
+    // Assign ID
+    // Create appointment + state
+    // Restart form
   };
 
   //Extract values
@@ -31,7 +60,9 @@ const Form: React.FC<FormProps> = () => {
     <Fragment>
       <h2>Create appointment</h2>
 
-      <form>
+      { error ? <p className="alert-error">There is an error</p> : null }
+
+      <form onSubmit={submitAppointment}>
         <label>Title</label>
         <input
           type="text"
