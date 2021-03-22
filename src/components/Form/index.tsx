@@ -1,5 +1,6 @@
-import { stringify } from "node:querystring";
 import React, { Fragment, useState } from "react";
+import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
+import { v4 as uuid } from 'uuid';
 
 export interface FormProps {}
 
@@ -10,6 +11,7 @@ export interface FormProps {}
 const Form: React.FC<FormProps> = () => {
   //Appointment state
   const [appointment, setAppointment] = useState({
+    id: "",
     title: "",
     invitees: "",
     date: "",
@@ -48,7 +50,12 @@ const Form: React.FC<FormProps> = () => {
       return;
     }
 
+    // Update error
+    setError(false);
+
     // Assign ID
+    appointment.id = uuid();
+
     // Create appointment + state
     // Restart form
   };
