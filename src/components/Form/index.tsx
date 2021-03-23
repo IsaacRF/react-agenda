@@ -2,13 +2,15 @@ import React, { Fragment, useState } from "react";
 import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
 import { v4 as uuid } from 'uuid';
 
-export interface FormProps {}
+export interface FormProps {
+    createAppointment: any
+}
 
 /**
  * Appointments form component
  * @returns Fragment containing the form structure
  */
-const Form: React.FC<FormProps> = () => {
+const Form: React.FC<FormProps> = ({createAppointment}) => {
   //Appointment state
   const [appointment, setAppointment] = useState({
     id: "",
@@ -57,6 +59,8 @@ const Form: React.FC<FormProps> = () => {
     appointment.id = uuid();
 
     // Create appointment + state
+    createAppointment(appointment);
+
     // Restart form
   };
 
