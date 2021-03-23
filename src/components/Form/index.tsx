@@ -1,26 +1,26 @@
 import React, { Fragment, useState } from "react";
 import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 
 export interface FormProps {
-    createAppointment: any
+  createAppointment: any;
 }
 
 /**
  * Appointments form component
  * @returns Fragment containing the form structure
  */
-const Form: React.FC<FormProps> = ({createAppointment}) => {
-  //Appointment state
-  const [appointment, setAppointment] = useState({
+const Form: React.FC<FormProps> = ({ createAppointment }) => {
+  //Form state
+  const initialState = {
     id: "",
     title: "",
     invitees: "",
     date: "",
     time: "",
     description: "",
-  });
-
+  };
+  const [appointment, setAppointment] = useState(initialState);
   const [error, setError] = useState(false);
 
   /**
@@ -62,6 +62,7 @@ const Form: React.FC<FormProps> = ({createAppointment}) => {
     createAppointment(appointment);
 
     // Restart form
+    setAppointment({ ...initialState });
   };
 
   //Extract values
@@ -71,7 +72,7 @@ const Form: React.FC<FormProps> = ({createAppointment}) => {
     <Fragment>
       <h2>Create appointment</h2>
 
-      { error ? <p className="alert-error">There is an error</p> : null }
+      {error ? <p className="alert-error">There is an error</p> : null}
 
       <form onSubmit={submitAppointment}>
         <label>Title</label>
