@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 
 import Form from "./components/Form";
+import Appointment from "./components/Appointment";
 
 const App = () => {
   // Saved Appointments state
@@ -11,10 +12,7 @@ const App = () => {
    * @param appointment Appointment to add
    */
   const createAppointment = (appointment: any) => {
-    setAppointments([
-      ...appointments,
-      appointment
-    ]);
+    setAppointments([...appointments, appointment]);
   };
 
   return (
@@ -24,7 +22,15 @@ const App = () => {
         <div className="one-half column">
           <Form createAppointment={createAppointment} />
         </div>
-        <div className="one-half column">2</div>
+        <div className="one-half column">
+          <h2>Your appointments</h2>
+          {appointments.map((appointment: any) => (
+            <Appointment
+                key={appointment.id}
+                appointment={appointment}
+            />
+          ))}
+        </div>
       </div>
     </Fragment>
   );
