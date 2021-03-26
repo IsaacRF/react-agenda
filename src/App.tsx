@@ -15,6 +15,16 @@ const App = () => {
     setAppointments([...appointments, appointment]);
   };
 
+  /**
+   * Deletes an appointment by ID
+   * @param id ID of the appointment to delete
+   */
+  const deleteAppointment = (id: string) => {
+    setAppointments(
+      appointments.filter((appoint: any) => appoint.id !== id)
+    );
+  };
+
   return (
     <Fragment>
       <h1>React Agenda</h1>
@@ -26,8 +36,9 @@ const App = () => {
           <h2>Your appointments</h2>
           {appointments.map((appointment: any) => (
             <Appointment
-                key={appointment.id}
-                appointment={appointment}
+              key={appointment.id}
+              appointment={appointment}
+              deleteAppointment={deleteAppointment}
             />
           ))}
         </div>
