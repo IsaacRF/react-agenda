@@ -34,6 +34,9 @@ const App = () => {
         </div>
         <div className="one-half column">
           <h2>Your appointments</h2>
+          {appointments.length === 0 && (
+            <p className="title">No scheduled appointments</p>
+          )}
           {appointments.map((appointment: any) => (
             <Appointment
               key={appointment.id}
