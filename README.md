@@ -4,6 +4,8 @@ This project is intended to serve as a base for learning some React principles a
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Live Demo: http://isaacrf.com/apps/react-agenda/
+
 ![demo](https://user-images.githubusercontent.com/2803925/113733827-19dfff00-96fb-11eb-8832-5ba77cfcd3eb.gif)
 
 ## Available Scripts
